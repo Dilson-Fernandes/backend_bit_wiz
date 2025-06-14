@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Your frontend origin
+  origin: 'https://frontend-bit-wiz.onrender.com', // Your frontend origin
   credentials: true, // Allow credentials (cookies)
   optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
