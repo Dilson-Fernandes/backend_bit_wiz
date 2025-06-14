@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
         });
 
         const token = generateToken(user);
-        
+
         res.status(201).json({ user, token });
 
     } catch (err) {
@@ -54,11 +54,11 @@ const loginUser = async (req, res) => {
         const token = generateToken(user);
         res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // send over HTTPS in production
-            sameSite: 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+            secure: process.env.NODE_ENV === 'production', // true on Render
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
-        res.status(200) .json({ user, token });
+        res.status(200).json({ user, token });
 
     } catch (err) {
         console.error(err);
